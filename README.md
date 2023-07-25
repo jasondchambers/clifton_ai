@@ -3,40 +3,51 @@ An AI chatbot utility based on your documents, built on top of Llama 2 that you 
 
 When up and running, you can ask it questions using natural language and it will provide answers based on the content in the PDFs you supply.
 
-The following guide by Kenneth Leung provided the basis for Clifton.
-
-https://towardsdatascience.com/running-llama-2-on-cpu-inference-for-document-q-a-3d636037a3d8
+[A guide written by Kenneth Leung](https://towardsdatascience.com/running-llama-2-on-cpu-inference-for-document-q-a-3d636037a3d8) provided the basis for Clifton.
 
 ## Installation
 
 ### Setup your environment
 
-Assuming you have Miniconda installed already, create an environment as follows:
+The following instructions assume you are running on a Linux based distribution. These instructions should be easily adaptable for other OS platforms although they have not been tested. 
 
-conda create --name=cliftonai python=3.10
+Assuming you have [Miniconda](https://docs.conda.io/en/latest/miniconda.html) installed already, create an environment as follows:
 
-Activate it and install the necessary Python packages as follows:
+```bash
+$ conda create --name=cliftonai python=3.10
+```
 
-conda activate cliftonai
-pip install -r requirements.txt
+Activate it and install the necessary Python packages as follows from within the clifton_ai top-level directory:
+
+```bash
+$ conda activate cliftonai
+$ pip install -r requirements.txt
+```
 
 ### Download the Llama 2 model
 
-Specifically, a quantized 7B parameter version of Llama2 optimized for chat applications in ggml format - llama-2-7b-chat.ggmlv3.q8_0.bin. Place it in the models directory
+Specifically you should download a quantized 7B parameter version of Llama2 optimized for chat applications in ggml format if you want to run it on your PC (no GPU required). Feel free to experiment with other versions of the model. If you want to run it on a GPU, consider downloading directly from [Meta AI](https://ai.meta.com). If you do use different models, you will need to update the references contained in the code.
 
-https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML
+You can download the model from Hugging Face at this [URL](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML). Click on the "Files and versions" tab, and select llama-2-7b-chat.ggmlv3.q8_0.bin. Note that at time of writing, this file is 7.16GB. The clue is in the name - these are large language models.
+
+Once downloaded, move the file into the models directory.
 
 ## Index your documents
 
-Place you PDFs into the data directory. In this example, a PDF has been created from the Wikipedia page for my home village of Sawley, Derbyshire.
+Place your PDFs into the data directory. In this example, a PDF has been created from the Wikipedia page for my home village of [Sawley, Derbyshire](https://en.wikipedia.org/wiki/Sawley,_Derbyshire).
 
-Build the index as follows:
+Build the index by running the following command from within the clifton_ai top-level directory:
 
-python buildvectorstore.py
+```bash
+$ python buildvectorstore.py
+```
+
+If you update your PDFs or decide to add more PDFs to the directory, you will need to re-build the index.
 
 # Test your installation
 
-python main.py "What is the old name for Sawley"
+```bash
+$ python main.py "What is the old name for Sawley"
 
 Question: What is the old name for Sawley
 
@@ -69,6 +80,4 @@ Page Number: 0
 
 ============================================================
 Time to retrieve response: 21.14585060600075
-
-
-
+```

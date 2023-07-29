@@ -6,3 +6,4 @@ langchain==0.0.225
 pypdf==3.8.1
 sentence-transformers==2.2.2
 uvicorn>=0.22.0
+flask

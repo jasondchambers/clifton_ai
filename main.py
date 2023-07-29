@@ -1,6 +1,5 @@
-import timeit
 import argparse
-from cliftonai.chain import ChainFactory
+from cliftonai.chatbot import Chatbot
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -9,22 +8,18 @@ if __name__ == "__main__":
                         help='Your question')
     args = parser.parse_args()
 
-    start = timeit.default_timer()
-    chain = ChainFactory.create()
-    response = chain({'query': args.question})
-    end = timeit.default_timer()
+    chatbot = Chatbot()
+    response = chatbot.ask(args.question)
 
-    print(f'\nQuestion: {args.question}')
-    print(f'\nAnswer: {response["result"]}')
+    print(f'\nQuestion: {response.question}')
+    print(f'\nAnswer: {response.answer}')
     print('='*50)
 
-    # Process source documents
-    source_docs = response['source_documents']
-    for i, doc in enumerate(source_docs):
+    for i, doc in enumerate(response.source_documents):
         print(f'\nSource Document {i+1}\n')
         print(f'Source Text: {doc.page_content}')
         print(f'Document Name: {doc.metadata["source"]}')
         print(f'Page Number: {doc.metadata["page"]}\n')
         print('='* 60)
 
-    print(f"Time to retrieve response: {end - start}")
+    print(f"Time to retrieve response: {response.response_time}")

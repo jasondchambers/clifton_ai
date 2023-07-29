@@ -8,4 +8,4 @@ chatbot = Chatbot()
 def ask():
     request_json = request.get_json()
     chatbot_response = chatbot.ask(request_json['question'])
-    return jsonify(chatbot_response)
+    return jsonify(chatbot_response._asdict())

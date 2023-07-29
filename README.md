@@ -46,6 +46,7 @@ If you update your PDFs or decide to add more PDFs to the directory, you will ne
 
 # Test your installation
 
+In this test example, a PDF has been created based on the Wikipedia page for [Sawley, Derbyshire]i().
 ```bash
 $ python main.py "What is the old name for Sawley"
 
@@ -80,4 +81,36 @@ Page Number: 0
 
 ============================================================
 Time to retrieve response: 21.14585060600075
+```
+
+# REST API
+
+A REST API is provided enabling clifton_ai to be asked questions over HTTP.
+
+To test, you must first launch the server as follows:
+
+```bash
+$ flask --app flaskapp run --debug
+ * Serving Flask app 'flaskapp'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 102-310-597
+```
+
+Now you may simply "POST" your question to the server. The following example uses cURL and assumes the server is running on localhost:
+
+```bash
+$ curl -X POST -H "Content-Type: application/json" -d '{      
+  "question": "what is the population of sawley"
+}' http://localhost:5000/ask/
+
+{
+  "answer": "The population of Sawley as measured at the 2011 Census was 6,629.",
+  "question": "what is the population of sawley",
+  "response_time": 22.853943267999966
+}
 ```

@@ -44,7 +44,7 @@ $ python buildvectorstore.py
 
 If you update your PDFs or decide to add more PDFs to the directory, you will need to re-build the index.
 
-# Test your installation
+## Test your installation
 
 In this test example, a PDF has been created based on the Wikipedia page for [Sawley, Derbyshire]i().
 ```bash
@@ -83,7 +83,7 @@ Page Number: 0
 Time to retrieve response: 21.14585060600075
 ```
 
-# REST API
+## REST API
 
 A REST API is provided enabling clifton_ai to be asked questions over HTTP.
 

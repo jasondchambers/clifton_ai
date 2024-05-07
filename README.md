@@ -1,4 +1,10 @@
+
+## Update as of 7th May 2024. 
+
+Things continue to evolve at a rapid scale within the AI world. I wrote this tool just to dip my toes into the world of Generative AI. I was keen to host it locally so I could ensure my data remains private and to support Retrieval Augmented Generation (RAG) of my own private documents. This project is now obsolete, although I did learn alot during it's creation. Practically, the best way to deploy a private AI as of May 2024, is to use [Ollama](https://ollama.com/) and  [Open Web UI](https://github.com/open-webui/open-webui). NetworkChuck has a great [video](https://www.youtube.com/watch?v=Wjrdr0NU4Sk&t=427s) that shows you how to do this. The only tweak I would make to Chuck's instructions is to use llama3 instead of llama2.
+
 # clifton_ai
+
 An AI chatbot utility based on your documents, built on top of Llama 2 that you can run locally on your own hardware without a GPU. Note that it is not fast, and you need a decent PC with lots of memory to run.
 
 When up and running, you can ask it questions using natural language and it will provide answers based on the content in the PDFs you supply.
